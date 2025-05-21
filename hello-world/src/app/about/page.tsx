@@ -1,4 +1,9 @@
+import { title } from 'process'
 import React from 'react'
+
+export const metadata = {
+    title: "About nextcraft",
+}
 
 function About() {
     return (
