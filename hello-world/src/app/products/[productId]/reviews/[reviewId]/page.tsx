@@ -1,12 +1,13 @@
 import React from 'react'
 import NotFound from './not-found'
+import { redirect } from 'next/navigation'
 
 async function Review({ params }: { params: Promise<{ productId: string, reviewId: string }> }) {
 
-
     const { productId, reviewId } = await params
     if (parseInt(reviewId) > 1000) {
-        return <NotFound />
+        redirect('/')
+        // return <NotFound />
     }
     return (
         <div>
