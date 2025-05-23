@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Docs({ params }: { params: { slug: string[] } }) {
+async function Docs({ params }: { params: Promise<{ slug: string[] }> }) {
 
-    const { slug } = params
+    const slug = (await params).slug
 
     if (slug?.length === 2) {
         return (

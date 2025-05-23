@@ -1,10 +1,7 @@
 import React from 'react'
-import NotFound from './not-found'
 import { redirect } from 'next/navigation'
+import { genInt } from '@/app/_lib/generateRandomInteger'
 
-export const genInt = (count: number) => {
-    return Math.floor(Math.random() * count)
-}
 
 async function Review({ params }: { params: Promise<{ productId: string, reviewId: string }> }) {
 
@@ -13,7 +10,7 @@ async function Review({ params }: { params: Promise<{ productId: string, reviewI
         redirect('/')
         // return <NotFound />
     }
-    let number = genInt(2)
+    const number = genInt(2)
     if(number < 1){
         throw Error("intentional error");
     }

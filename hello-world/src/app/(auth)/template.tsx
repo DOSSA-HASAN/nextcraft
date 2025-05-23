@@ -31,7 +31,7 @@ export default function RootLayout({
         <header>
           {
             navlinks.map((link) => (
-              <p><Link href={link.href} className={`font-bold ${pathname === link.href ? 'text-red-400' : 'text-blue-400'}`}>{link.name}</Link></p>
+              <p key={link.href}><Link href={link.href} className={`font-bold ${pathname === link.href ? 'text-red-400' : 'text-blue-400'}`}>{link.name}</Link></p>
             ))
           }
         </header>
