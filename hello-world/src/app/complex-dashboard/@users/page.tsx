@@ -8,10 +8,10 @@ function UserAnalytics() {
         throw new Error("Simulated error.")
     }
     return (
-        <Card>
+        <>
             <h1>USERS</h1>
             <button className='bg-red-500 text-white font-bold p-3 rounded-md ml-10' onClick={() => setError(true)}>Simulate Error</button>
-        </Card>
+        </>
     )
 }
 
