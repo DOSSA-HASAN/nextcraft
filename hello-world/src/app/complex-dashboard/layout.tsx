@@ -10,7 +10,7 @@ export default function ComplexDashboardLayout({ children, users, revenue, notif
                     <div>{users}</div>
                     <div>{revenue}</div>
                 </div>
-                <div className="flex">
+                <div className="flex flex-1">
                     {notifications}
                 </div>
             </article>
