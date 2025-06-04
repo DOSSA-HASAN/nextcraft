@@ -35,3 +35,9 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
         console.log("An unknown error has occurred")
     }
 }
+
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const id = (await params).id
+    const filteredArray = comments.filter((com) => com.id != parseInt(id))
+    return Response.json(filteredArray)
+}
