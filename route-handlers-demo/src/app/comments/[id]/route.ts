@@ -17,3 +17,21 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
         }
     }
 }
+
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    try {
+        const id = (await params).id
+        const body = await req.json()
+        const { text } = body
+
+        const index = comments.findIndex((comment) => comment.id === parseInt(id))
+        comments[index].text = text
+
+        return Response.json(comments[index])
+
+    } catch (error) {
+        if (error instanceof Error)
+            console.log(error.message)
+        console.log("An unknown error has occurred")
+    }
+}
