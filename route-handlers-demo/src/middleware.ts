@@ -8,6 +8,8 @@ export function middleware(req: NextRequest) {
         response.cookies.set("theme", "idkbro")
     }
 
+    response.headers.set("Custom-Header", "custom-value")
+
     return response;
 
     // return NextResponse.redirect(new URL("/", req.url))
