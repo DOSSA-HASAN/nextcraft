@@ -1,7 +1,6 @@
-import { type NextRequest } from "next/server"
 import { headers, cookies } from "next/headers"
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     // const reqHeaders = new Headers(req.headers)
     // console.log(reqHeaders.get("Authorization"))
 

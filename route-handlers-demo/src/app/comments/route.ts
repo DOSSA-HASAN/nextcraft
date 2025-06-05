@@ -1,4 +1,3 @@
-import { request } from "http"
 import { comments } from "./data"
 import { NextRequest } from "next/server"
 
@@ -9,8 +8,8 @@ export async function GET(req: NextRequest) {
     return Response.json(filteredComments)
 }   
 
-export async function POST(req: Request) {
-    const comment = await req.json()
+export async function POST(_req: Request) {
+    const comment = await _req.json()
     const newComment = {
         id: comments.length + 1,
         text: comment.text
