@@ -1,3 +1,4 @@
+import { resolve } from 'path';
 import React from 'react'
 
 type Users = {
@@ -9,6 +10,7 @@ type Users = {
 }
 
 async function ServerSideDataFetching() {
+    await new Promise((resolve) => setTimeout(resolve, 2000))
     const res = await fetch("https://jsonplaceholder.typicode.com/users")
     const users: Users[] = await res.json()
 
