@@ -11,7 +11,7 @@ type Users = {
 
 async function ServerSideDataFetching() {
     await new Promise((resolve) => setTimeout(resolve, 2000))
-    const res = await fetch("https://jsonplaceholder.typicode.com/user1234s")
+    const res = await fetch("https://jsonplaceholder.typicode.com/users")
     const users: Users[] = await res.json()
     if(!res.ok){
         throw new Error("Failed to fetch user data")
