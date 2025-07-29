@@ -1,11 +1,13 @@
+'use client'
 import React from 'react'
 import { getProducts } from '../../../prisma-db'
+import Link from 'next/link';
 
-type Product = {
+export type Product = {
     id: number;
     title: string;
     price: number;
-    description: string;
+    description: string | null;
 }
 
 async function ProductsDBPage() {
@@ -15,7 +17,7 @@ async function ProductsDBPage() {
             {
                 products.map((product) => (
                     <div>
-                        <h1>{product.title}</h1>
+                        <Link href={`/products-db/${product.id}`}><h1>{product.title}</h1></Link>
                         <p>{product.price}</p>
                         <p>{product.description}</p>
                         <small>{product.id}</small>

@@ -42,3 +42,20 @@ export async function deleteProduct(id: number) {
     await new Promise((resolve) => setTimeout(resolve, 1500))
     return prisma.product.delete({ where: { id } })
 }
+
+// Update product
+export async function updateProduct(
+    id: number,
+    title: string,
+    price: number,
+    description: string
+) {
+    return prisma.product.update({
+        where: { id },
+        data: {
+            title,
+            price,
+            description,
+        },
+    })
+}
