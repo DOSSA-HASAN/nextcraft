@@ -1,25 +1,37 @@
-import React from 'react'
-import { addProduct } from '../../../prisma-db'
-import { redirect } from 'next/navigation'
+"use client"
+import React, { useActionState } from 'react'
+import { FormState, createProduct } from '@/actions/products'
 
 function AddProductPage() {
 
-    async function createProduct(formData: FormData) {
-        "use server"
-        const title = formData.get("title") as string
-        const price = formData.get("price") as string
-        const description = formData.get("description") as string
-        await addProduct(title, parseInt(price), description)
-        redirect("/products-db")
-    }
+    const initialState: FormState = { errors: {} }
+    const [state, formAction, isPending] = useActionState(createProduct, initialState)
 
     return (
         <div>
-            <form action={createProduct}>
-                <input required type="text" placeholder='Product title' name='title' />
-                <input required type="number" placeholder='Product price' name='price' />
-                <input required type="text" placeholder='Product description' name='description' />
-                <button>Add item</button>
+            <form action={formAction}>
+                <div>
+                    <input type="text" placeholder='Product title' name='title' />
+                    {
+                        state.errors.title && <p className='text-red-500'>{state.errors.title}</p>
+                    }
+                </div>
+                <div>
+                    <input type="number" placeholder='Product price' name='price' />
+                    {
+                        state.errors.price && <p className='text-red-500'>{state.errors.price}</p>
+                    }
+                </div>
+                <div>
+                    <input type="text" placeholder='Product description' name='description' />
+                    {
+                        state.errors.description && <p className='text-red-500'>{state.errors.description}</p>
+                    }
+                </div>
+                <button type='submit' disabled={isPending} className={`${isPending ? 'bg-red-500' : 'bg-green-500'}`}>
+                    Submit
+                </button>
+                {/* <Submit /> */}
             </form>
         </div>
     )
