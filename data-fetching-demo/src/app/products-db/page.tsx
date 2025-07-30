@@ -2,6 +2,7 @@
 import React from 'react'
 import { getProducts } from '../../../prisma-db'
 import Link from 'next/link';
+import { removeProduct } from '@/actions/products';
 
 export type Product = {
     id: number;
@@ -21,6 +22,9 @@ async function ProductsDBPage() {
                         <p>{product.price}</p>
                         <p>{product.description}</p>
                         <small>{product.id}</small>
+                        <form action={removeProduct.bind(null, product.id)}>
+                            <button type='submit' className='bg-red-500 text-white'>Delete</button>
+                        </form>
                     </div>
                 ))
             }
