@@ -1,8 +1,6 @@
-'use client'
 import React from 'react'
 import { getProducts } from '../../../prisma-db'
-import Link from 'next/link';
-import { removeProduct } from '@/actions/products';
+import ProductsDetail from './product-detail';
 
 export type Product = {
     id: number;
@@ -13,22 +11,10 @@ export type Product = {
 
 async function ProductsDBPage() {
     const products: Product[] = await getProducts();
+
+
     return (
-        <div>
-            {
-                products.map((product) => (
-                    <div>
-                        <Link href={`/products-db/${product.id}`}><h1>{product.title}</h1></Link>
-                        <p>{product.price}</p>
-                        <p>{product.description}</p>
-                        <small>{product.id}</small>
-                        <form action={removeProduct.bind(null, product.id)}>
-                            <button type='submit' className='bg-red-500 text-white'>Delete</button>
-                        </form>
-                    </div>
-                ))
-            }
-        </div>
+        <ProductsDetail products={products} />
     )
 }
 
