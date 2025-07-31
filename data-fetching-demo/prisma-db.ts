@@ -1,3 +1,4 @@
+import { title } from "process";
 import { PrismaClient } from "./src/generated/prisma";
 import { resolve } from "path";
 const prisma = new PrismaClient()
@@ -18,8 +19,17 @@ const seedProducts = async () => {
 seedProducts()
 
 // Get all products
-export async function getProducts() {
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+export async function getProducts(query?: string) {
+    if (query) {
+        return prisma.product.findMany({
+            where: {
+                OR: [
+                    { title: { contains: query } },
+                    { description: { contains: query } }
+                ]
+            }
+        })
+    }
     return prisma.product.findMany()
 }
 

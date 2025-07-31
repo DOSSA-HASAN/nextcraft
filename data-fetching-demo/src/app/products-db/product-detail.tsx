@@ -2,6 +2,7 @@
 import React, { useOptimistic } from 'react'
 import Link from 'next/link';
 import { removeProduct } from '@/actions/products';
+import Form from 'next/form';
 
 export type Product = {
     id: number;
@@ -29,9 +30,9 @@ function ProductsDetail({ products }: { products: Product[] }) {
                         <p>{product.price}</p>
                         <p>{product.description}</p>
                         <small>{product.id}</small>
-                        <form action={removeProductById.bind(null, product.id)}>
+                        <Form action={removeProductById.bind(null, product.id)}>
                             <button type='submit' className='bg-red-500 text-white'>Delete</button>
-                        </form>
+                        </Form>
                     </div>
                 ))
             }
